@@ -1,170 +1,137 @@
 ---
 import Layout from '../components/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts using content collections
+const posts = await getCollection('blog');
+
+// Sort posts by date (newest first)
+const sortedPosts = posts.sort((a, b) => {
+  return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();
+});
 ---
 
-<Layout title="Welcome to My Static Blog">
-  <main class="hero">
-    <div class="hero-content">
-      <h1>Welcome to My Blog</h1>
-      <p class="hero-subtitle">
-        A beautiful static blog built with Astro and MDX. 
-        Discover insights about web development, technology trends, and more.
-      </p>
-      <div class="hero-actions">
-        <a href="/blog" class="cta-button primary">Read the Blog</a>
-        <a href="/blog" class="cta-button secondary">Latest Posts</a>
-      </div>
-    </div>
+<Layout title="My Static Blog">
+  <main class="container">
+    <h1>Blog</h1>
+    <p class="subtitle">Welcome to my blog! Here are my latest posts:</p>
     
-    <div class="features">
-      <div class="feature">
-        <h3>⚡ Lightning Fast</h3>
-        <p>Built with Astro for optimal performance and zero JavaScript by default.</p>
-      </div>
-      <div class="feature">
-        <h3>📝 MDX Powered</h3>
-        <p>Write content in Markdown with the power of JSX components.</p>
-      </div>
-      <div class="feature">
-        <h3>🎨 Beautiful Design</h3>
-        <p>Clean, responsive design that looks great on all devices.</p>
-      </div>
+    <div class="posts-grid">
+      {sortedPosts.map((post) => (
+        <article class="post-card">
+          <h2>
+            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          </h2>
+          <p class="post-meta">
+            <time datetime={post.data.date}>
+              {new Date(post.data.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+            {post.data.tags && (
+              <span class="tags">
+                {post.data.tags.map((tag: string) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </span>
+            )}
+          </p>
+          <p class="post-excerpt">{post.data.description}</p>
+          <a href={`/blog/${post.slug}`} class="read-more">Read more →</a>
+        </article>
+      ))}
     </div>
   </main>
 </Layout>
 
 <style>
-  .hero {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem 1rem;
-    max-width: 1200px;
+  .container {
+    max-width: 800px;
     margin: 0 auto;
+    padding: 2rem 1rem;
   }
 
-  .hero-content {
-    margin-bottom: 4rem;
-  }
-
-  .hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #007acc, #0066cc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-subtitle {
-    font-size: 1.25rem;
-    color: #666;
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
-    line-height: 1.6;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .cta-button {
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-  }
-
-  .cta-button.primary {
-    background: #007acc;
-    color: white;
-  }
-
-  .cta-button.primary:hover {
-    background: #0066cc;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 118, 204, 0.3);
-  }
-
-  .cta-button.secondary {
-    background: transparent;
-    color: #007acc;
-    border: 2px solid #007acc;
-  }
-
-  .cta-button.secondary:hover {
-    background: #007acc;
-    color: white;
-    transform: translateY(-2px);
-  }
-
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
-    width: 100%;
-  }
-
-  .feature {
-    background: #f8f9fa;
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .feature:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  }
-
-  .feature h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
     color: #333;
   }
 
-  .feature p {
+  .subtitle {
+    font-size: 1.1rem;
     color: #666;
-    line-height: 1.6;
+    margin-bottom: 2rem;
   }
 
-  @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2.5rem;
-    }
+  .posts-grid {
+    display: grid;
+    gap: 2rem;
+  }
 
-    .hero-subtitle {
-      font-size: 1.1rem;
-    }
+  .post-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 4px solid #007acc;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
 
-    .hero-actions {
-      flex-direction: column;
-      align-items: center;
-    }
+  .post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
 
-    .cta-button {
-      width: 100%;
-      max-width: 300px;
-    }
+  .post-card h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+  }
 
-    .features {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
+  .post-card h2 a {
+    color: #333;
+    text-decoration: none;
+  }
 
-    .feature {
-      padding: 1.5rem;
-    }
+  .post-card h2 a:hover {
+    color: #007acc;
+  }
+
+  .post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: #007acc;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .post-excerpt {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .read-more {
+    color: #007acc;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .read-more:hover {
+    text-decoration: underline;
   }
 </style>
