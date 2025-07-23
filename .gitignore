@@ -22,3 +22,27 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# VSCode settings (optional - some prefer to keep these)
+# .vscode/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build artifacts
+*.tsbuildinfo
