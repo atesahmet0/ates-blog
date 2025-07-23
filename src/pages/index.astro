@@ -56,12 +56,12 @@ const sortedPosts = posts.sort((a, b) => {
   h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: #e4e4e7;
   }
 
   .subtitle {
     font-size: 1.1rem;
-    color: #666;
+    color: #9ca3af;
     margin-bottom: 2rem;
   }
 
@@ -71,16 +71,17 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   .post-card {
-    background: #f8f9fa;
+    background: #262626;
     border-radius: 8px;
     padding: 1.5rem;
     border-left: 4px solid #007acc;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #374151;
   }
 
   .post-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
   .post-card h2 {
@@ -89,7 +90,7 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   .post-card h2 a {
-    color: #333;
+    color: #e4e4e7;
     text-decoration: none;
   }
 
@@ -99,7 +100,7 @@ const sortedPosts = posts.sort((a, b) => {
 
   .post-meta {
     font-size: 0.9rem;
-    color: #666;
+    color: #9ca3af;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -120,7 +121,7 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   .post-excerpt {
-    color: #555;
+    color: #d1d5db;
     line-height: 1.6;
     margin-bottom: 1rem;
   }
