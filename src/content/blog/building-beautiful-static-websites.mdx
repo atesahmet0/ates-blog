@@ -5,27 +5,6 @@ description: "Discover the benefits of static websites and why they're perfect f
 tags: ["static-sites", "performance", "web-development"]
 ---
 
-import Layout from '../../components/Layout.astro';
-
-<Layout title={frontmatter.title}>
-
-# {frontmatter.title}
-
-<div class="post-meta">
-  <time datetime={frontmatter.date}>
-    {new Date(frontmatter.date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })}
-  </time>
-  <div class="tags">
-    {frontmatter.tags.map((tag) => (
-      <span class="tag">{tag}</span>
-    ))}
-  </div>
-</div>
-
 Static websites are making a huge comeback, and for good reason! In this post, we'll explore why static sites are perfect for modern web development.
 
 ## The Power of Static
@@ -90,65 +69,3 @@ This approach gives you the benefits of static sites while still allowing for dy
 Static websites represent the perfect balance of simplicity, performance, and modern web development practices. Whether you're building a blog, portfolio, or business site, consider going static!
 
 What type of static site are you planning to build? Let me know in the comments!
-
-<style>
-  .post-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 1rem 0 2rem 0;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    color: #666;
-  }
-
-  .tags {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    background: #007acc;
-    color: white;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-  }
-
-  th, td {
-    border: 1px solid #e9ecef;
-    padding: 0.75rem;
-    text-align: left;
-  }
-
-  th {
-    background: #f8f9fa;
-    font-weight: 600;
-  }
-
-  @media (max-width: 768px) {
-    .post-meta {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    table {
-      font-size: 0.9rem;
-    }
-
-    th, td {
-      padding: 0.5rem;
-    }
-  }
-</style>
-
-</Layout>
