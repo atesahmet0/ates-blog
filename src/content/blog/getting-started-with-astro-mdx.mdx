@@ -1,0 +1,111 @@
+---
+title: "Getting Started with Astro and MDX"
+date: "2025-01-15"
+description: "Learn how to build a static blog with Astro and MDX. This post covers the basics of setting up your first blog."
+tags: ["astro", "mdx", "tutorial"]
+---
+
+import Layout from '../../components/Layout.astro';
+
+<Layout title={frontmatter.title}>
+
+# {frontmatter.title}
+
+<div class="post-meta">
+  <time datetime={frontmatter.date}>
+    {new Date(frontmatter.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })}
+  </time>
+  <div class="tags">
+    {frontmatter.tags.map((tag) => (
+      <span class="tag">{tag}</span>
+    ))}
+  </div>
+</div>
+
+Welcome to my first blog post! Today I'm excited to share how I built this static blog using **Astro** and **MDX**.
+
+## Why Astro and MDX?
+
+Astro is a fantastic static site generator that allows you to build fast, content-focused websites. When combined with MDX, you get the power of:
+
+- **Markdown simplicity** for writing content
+- **JSX components** for interactive elements
+- **Zero JS by default** for optimal performance
+- **Component islands** for when you need interactivity
+
+## Getting Started
+
+Setting up an Astro project with MDX is surprisingly straightforward:
+
+```bash
+# Create a new Astro project
+npm create astro@latest my-blog -- --template minimal
+
+# Install MDX integration
+npm install @astrojs/mdx
+
+# Configure Astro
+# Add mdx() to your astro.config.mjs integrations
+```
+
+## Writing in MDX
+
+MDX allows you to write JSX directly in your Markdown files. This means you can:
+
+1. Use all the Markdown syntax you know and love
+2. Import and use React/Astro components
+3. Create dynamic content with JavaScript expressions
+
+> MDX is the perfect blend of simplicity and power for content creators who want more than basic Markdown.
+
+## What's Next?
+
+In future posts, I'll cover:
+
+- Advanced MDX techniques
+- Building custom components for your blog
+- SEO optimization with Astro
+- Deploying your static blog
+
+Thanks for reading! Stay tuned for more content.
+
+<style>
+  .post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0 2rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: #007acc;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .post-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+</style>
+
+</Layout>

@@ -1,16 +1,170 @@
 ---
-
+import Layout from '../components/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Welcome to My Static Blog">
+  <main class="hero">
+    <div class="hero-content">
+      <h1>Welcome to My Blog</h1>
+      <p class="hero-subtitle">
+        A beautiful static blog built with Astro and MDX. 
+        Discover insights about web development, technology trends, and more.
+      </p>
+      <div class="hero-actions">
+        <a href="/blog" class="cta-button primary">Read the Blog</a>
+        <a href="/blog" class="cta-button secondary">Latest Posts</a>
+      </div>
+    </div>
+    
+    <div class="features">
+      <div class="feature">
+        <h3>⚡ Lightning Fast</h3>
+        <p>Built with Astro for optimal performance and zero JavaScript by default.</p>
+      </div>
+      <div class="feature">
+        <h3>📝 MDX Powered</h3>
+        <p>Write content in Markdown with the power of JSX components.</p>
+      </div>
+      <div class="feature">
+        <h3>🎨 Beautiful Design</h3>
+        <p>Clean, responsive design that looks great on all devices.</p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    margin-bottom: 4rem;
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #007acc, #0066cc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .cta-button.primary {
+    background: #007acc;
+    color: white;
+  }
+
+  .cta-button.primary:hover {
+    background: #0066cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 118, 204, 0.3);
+  }
+
+  .cta-button.secondary {
+    background: transparent;
+    color: #007acc;
+    border: 2px solid #007acc;
+  }
+
+  .cta-button.secondary:hover {
+    background: #007acc;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  .feature {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .feature p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-button {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .features {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .feature {
+      padding: 1.5rem;
+    }
+  }
+</style>
