@@ -82,12 +82,13 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
 
   .banner-container {
     margin-bottom: 3rem;
-    border-radius: 12px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     position: relative;
     height: 300px;
     background-color: var(--color-bg-tertiary);
+    clip-path: inset(0 round 20px);
   }
 
   .image-skeleton {
@@ -190,7 +191,7 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
     color: var(--color-text-secondary);
     border: 1px solid var(--color-border-primary);
     padding: 0.25rem 0.75rem;
-    border-radius: 6px;
+    border-radius: 12px;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
     transition: all 0.2s ease;
