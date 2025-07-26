@@ -54,15 +54,17 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
     margin-bottom: 0.5rem;
     color: #e4e4e7;
   }
 
   .subtitle {
-    font-size: 1.1rem;
+    font-size: var(--font-size-lg);
     color: #9ca3af;
     margin-bottom: 2rem;
+    line-height: var(--line-height-relaxed);
   }
 
   .posts-grid {
@@ -86,7 +88,8 @@ const sortedPosts = posts.sort((a, b) => {
 
   .post-card h2 {
     margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
   }
 
   .post-card h2 a {
@@ -99,7 +102,7 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   .post-meta {
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
     color: #9ca3af;
     margin-bottom: 1rem;
     display: flex;
@@ -117,19 +120,20 @@ const sortedPosts = posts.sort((a, b) => {
     color: white;
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
   }
 
   .post-excerpt {
     color: #d1d5db;
-    line-height: 1.6;
+    line-height: var(--line-height-relaxed);
     margin-bottom: 1rem;
   }
 
   .read-more {
     color: #007acc;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   .read-more:hover {

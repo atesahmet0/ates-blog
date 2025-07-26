@@ -25,11 +25,14 @@ A beautiful, fast, and modern static blog built with **Astro** and **MDX**. This
 │   │       ├── getting-started-with-astro-mdx.mdx
 │   │       ├── building-beautiful-static-websites.mdx
 │   │       └── future-of-web-development.mdx
-│   └── pages/
-│       ├── index.astro         # Home page
-│       └── blog.astro          # Blog listing page
+│   ├── pages/
+│   │   ├── index.astro         # Home page
+│   │   └── blog.astro          # Blog listing page
+│   └── styles/
+│       └── fonts.css           # Centralized font configuration
 ├── astro.config.mjs            # Astro configuration
 ├── package.json
+├── FONT_SYSTEM.md              # Font system documentation
 └── README.md
 ```
 
@@ -76,6 +79,12 @@ import Layout from '../../components/Layout.astro';
 ```
 
 ## 🎨 Customization
+
+### Typography
+The blog uses a centralized font system with **SF Pro Display** as the default font, providing a modern and clean appearance. All font configurations are defined in `src/styles/fonts.css`. See [FONT_SYSTEM.md](FONT_SYSTEM.md) for detailed documentation on:
+- Available font variables (sizes, weights, families)
+- How to customize fonts site-wide
+- Best practices for typography
 
 ### Styling
 - Global styles are defined in `src/components/Layout.astro`
