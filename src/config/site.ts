@@ -1,12 +1,12 @@
 // Site Configuration - Single Source of Truth
 export const siteConfig = {
   // Site Identity
-  title: "Be Fucking Boldf",
-  description: "A beautiful static blog built with Astro and MDX",
-  author: "Your Name",
+  title: "Be Fucking Bold",
+  description: "Burası bana ait",
+  author: "Ahmet Rıza Ateş",
   
   // URLs and Links
-  url: "https://your-blog.com", // Your site URL (no trailing slash)
+  url: "https://befuckingbold.com",
   
   // Navigation
   nav: {
@@ -26,8 +26,8 @@ export const siteConfig = {
   
   // Footer
   footer: {
-    copyright: "My Static Blog",
-    builtWith: "Built with Astro and MDX",
+    copyright: "Be Fucking Bold",
+    builtWith: "",
   },
   
   // SEO & Meta
