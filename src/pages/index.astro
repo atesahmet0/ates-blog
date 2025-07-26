@@ -22,13 +22,13 @@ const sortedPosts = posts.sort((a, b) => {
       {sortedPosts.map((post) => (
         <article class="post-card">
           <div class="post-thumbnail">
+            <div class="thumbnail-skeleton"></div>
             <img 
               src={post.data.banner || siteConfig.blog.defaultBanner} 
               alt={post.data.bannerAlt || `Default banner for ${post.data.title}`}
               class="thumbnail-image"
               loading="lazy"
               decoding="async"
-              onload="this.classList.add('loaded')"
             />
           </div>
           <div class="post-content">
@@ -100,6 +100,40 @@ const sortedPosts = posts.sort((a, b) => {
     width: 100%;
     height: 200px;
     overflow: hidden;
+    position: relative;
+  }
+
+  .thumbnail-skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+    z-index: 2;
+  }
+
+  .thumbnail-skeleton::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 2px solid #444;
+    border-top: 2px solid #007acc;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    opacity: 0.6;
+  }
+
+  .post-thumbnail.loaded .thumbnail-skeleton {
+    opacity: 0;
   }
 
   .thumbnail-image {
@@ -107,29 +141,31 @@ const sortedPosts = posts.sort((a, b) => {
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    transition: opacity 0.5s ease-in-out 0.1s, transform 0.3s ease;
+    position: relative;
+    z-index: 1;
   }
 
-  .thumbnail-image.loaded {
+  .post-thumbnail.loaded .thumbnail-image {
     opacity: 1;
-    animation: none;
-    background: none;
   }
 
-  .post-card:hover .thumbnail-image.loaded {
+  .post-card:hover .post-thumbnail.loaded .thumbnail-image {
     transform: scale(1.05);
   }
 
-  @keyframes loading {
+  @keyframes skeleton-loading {
     0% {
       background-position: 200% 0;
     }
     100% {
       background-position: -200% 0;
     }
+  }
+
+  @keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
   }
 
   .post-card:hover .thumbnail-image {
