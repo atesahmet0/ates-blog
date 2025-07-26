@@ -1,6 +1,8 @@
 ---
 import Layout from '../../components/Layout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { siteConfig } from '../../config/site';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -20,11 +22,11 @@ const { Content } = await post.render();
 const { title, date, description, tags, banner, bannerAlt } = post.data;
 
 // Use default banner if no specific banner is provided
-const displayBanner = banner || '/images/banners/default-post-bg.jpg';
+const displayBanner = banner || siteConfig.blog.defaultBanner;
 const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description} preloadImage={displayBanner}>
   <main class="post-content">
     <article>
       <div class="banner-container">
@@ -32,6 +34,9 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
           src={displayBanner} 
           alt={displayBannerAlt} 
           class="banner-image"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
         />
       </div>
       
@@ -86,6 +91,23 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
     height: 300px;
     object-fit: cover;
     display: block;
+    background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  .banner-image[src] {
+    animation: none;
+    background: none;
+  }
+
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
   }
 
   .post-header {

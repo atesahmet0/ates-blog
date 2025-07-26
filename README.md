@@ -9,7 +9,8 @@ A beautiful, fast, and modern static blog built with **Astro** and **MDX**. This
 - **🎨 Beautiful Design**: Clean, responsive design with modern aesthetics
 - **🔍 SEO Optimized**: Semantic HTML and meta tags for better search visibility
 - **📱 Mobile First**: Responsive design that looks great on all devices
-- **🚀 Easy Deployment**: Deploy to Netlify, Vercel, or any static host
+- **�️ Image Optimized**: Fast loading images with lazy loading and preloading
+- **�🚀 Easy Deployment**: Deploy to Netlify, Vercel, or any static host
 
 ## 🚀 Project Structure
 
@@ -22,6 +23,8 @@ A beautiful, fast, and modern static blog built with **Astro** and **MDX**. This
 ├── src/
 │   ├── components/
 │   │   └── Layout.astro        # Main layout component
+│   ├── config/
+│   │   └── site.ts             # Centralized site configuration
 │   ├── content/
 │   │   └── blog/               # MDX blog posts
 │   │       ├── getting-started-with-astro-mdx.mdx
@@ -35,6 +38,8 @@ A beautiful, fast, and modern static blog built with **Astro** and **MDX**. This
 ├── astro.config.mjs            # Astro configuration
 ├── package.json
 ├── FONT_SYSTEM.md              # Font system documentation
+├── SITE_CONFIG.md              # Site configuration documentation
+├── IMAGE_OPTIMIZATION.md       # Image performance optimization guide
 └── README.md
 ```
 
@@ -83,6 +88,13 @@ import Layout from '../../components/Layout.astro';
 ```
 
 ## 🎨 Customization
+
+### Site Configuration
+The blog uses a centralized configuration system for consistent branding and settings. All site-wide options (title, navigation, footer, etc.) are defined in `src/config/site.ts`. See [SITE_CONFIG.md](SITE_CONFIG.md) for detailed documentation on:
+- Changing site title/logo
+- Adding navigation items
+- Updating footer content
+- Setting default banner images
 
 ### Typography
 The blog uses a centralized font system with **SF Pro Display** as the default font, providing a modern and clean appearance. All font configurations are defined in `src/styles/fonts.css`. See [FONT_SYSTEM.md](FONT_SYSTEM.md) for detailed documentation on:

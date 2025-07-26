@@ -1,6 +1,8 @@
 ---
 import Layout from '../components/Layout.astro';
 import { getCollection } from 'astro:content';
+import { siteConfig } from '../config/site';
+import { Image } from 'astro:assets';
 
 // Get all blog posts using content collections
 const posts = await getCollection('blog');
@@ -11,7 +13,7 @@ const sortedPosts = posts.sort((a, b) => {
 });
 ---
 
-<Layout title="My Static Blog">
+<Layout title="Blog" description={siteConfig.description}>
   <main class="container">
     <h1>Blog</h1>
     <p class="subtitle">Welcome to my blog! Here are my latest posts:</p>
@@ -21,9 +23,11 @@ const sortedPosts = posts.sort((a, b) => {
         <article class="post-card">
           <div class="post-thumbnail">
             <img 
-              src={post.data.banner || '/images/banners/default-post-bg.jpg'} 
+              src={post.data.banner || siteConfig.blog.defaultBanner} 
               alt={post.data.bannerAlt || `Default banner for ${post.data.title}`}
               class="thumbnail-image"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="post-content">
@@ -102,6 +106,23 @@ const sortedPosts = posts.sort((a, b) => {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  .thumbnail-image[src] {
+    animation: none;
+    background: none;
+  }
+
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
   }
 
   .post-card:hover .thumbnail-image {

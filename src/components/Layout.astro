@@ -1,26 +1,41 @@
 ---
+import { siteConfig, getPageTitle } from '../config/site';
+
 export interface Props {
   title: string;
+  description?: string;
+  preloadImage?: string;
 }
 
-const { title } = Astro.props;
+const { title, description, preloadImage } = Astro.props;
+const pageTitle = getPageTitle(title);
+const pageDescription = description || siteConfig.description;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="A beautiful static blog built with Astro and MDX" />
+    <meta name="description" content={pageDescription} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
+    
+    {/* Preload critical images */}
+    {preloadImage && (
+      <link rel="preload" as="image" href={preloadImage} />
+    )}
+    
+    {/* Preload default banner for faster loading */}
+    <link rel="preload" as="image" href={siteConfig.blog.defaultBanner} />
+    
+    <title>{pageTitle}</title>
   </head>
   <body>
     <header>
       <nav class="nav-container">
-        <a href="/" class="logo">My Blog</a>
+        <a href={siteConfig.nav.home.href} class="logo">{siteConfig.title}</a>
         <div class="nav-links">
-          <a href="/">Home</a>
+          <a href={siteConfig.nav.home.href}>{siteConfig.nav.home.label}</a>
         </div>
       </nav>
     </header>
@@ -29,7 +44,7 @@ const { title } = Astro.props;
     
     <footer>
       <div class="footer-container">
-        <p>&copy; 2025 My Static Blog. Built with Astro and MDX.</p>
+        <p>&copy; 2025 {siteConfig.footer.copyright}. {siteConfig.footer.builtWith}.</p>
       </div>
     </footer>
   </body>
