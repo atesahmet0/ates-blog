@@ -15,8 +15,7 @@ const sortedPosts = posts.sort((a, b) => {
 
 <Layout title="Blog" description={siteConfig.description}>
   <main class="container">
-    <h1>Blog</h1>
-    <p class="subtitle">Welcome to my blog! Here are my latest posts:</p>
+    <p class="subtitle">Welcome to my blog. Hope you may find some use in this collection!</p>
     
     <div class="posts-grid">
       {sortedPosts.map((post) => (
@@ -73,12 +72,12 @@ const sortedPosts = posts.sort((a, b) => {
     font-size: var(--font-size-4xl);
     font-weight: var(--font-weight-bold);
     margin-bottom: 0.5rem;
-    color: #e4e4e7;
+    color: var(--color-text-primary);
   }
 
   .subtitle {
     font-size: var(--font-size-lg);
-    color: #9ca3af;
+    color: var(--color-text-muted);
     margin-bottom: 2rem;
     line-height: var(--line-height-relaxed);
   }
@@ -89,12 +88,12 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   .post-card {
-    background: #262626;
+    background: var(--color-bg-secondary);
     border-radius: 8px;
     padding: 0;
-    border-left: 4px solid #007acc;
+    border-left: 4px solid var(--color-border-accent);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid #374151;
+    border: 1px solid var(--color-border-primary);
     overflow: hidden;
   }
 
@@ -109,16 +108,15 @@ const sortedPosts = posts.sort((a, b) => {
     height: 200px;
     overflow: hidden;
     position: relative;
-    background-color: #2a2a2a;
+    background-color: var(--color-bg-tertiary);
   }
 
   .thumbnail-skeleton {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
+    right: 0;  bottom: 0;
+    background: linear-gradient(90deg, var(--color-bg-tertiary) 25%, #333 50%, var(--color-bg-tertiary) 75%);
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s infinite;
     opacity: 1;
@@ -171,7 +169,7 @@ const sortedPosts = posts.sort((a, b) => {
   @media (prefers-reduced-motion: reduce) {
     .thumbnail-skeleton {
       animation: none;
-      background: #2a2a2a;
+      background: var(--color-bg-tertiary);
     }
     
     .thumbnail-image {
@@ -199,17 +197,17 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   .post-card h2 a {
-    color: #e4e4e7;
+    color: var(--color-text-primary);
     text-decoration: none;
   }
 
   .post-card h2 a:hover {
-    color: #007acc;
+    color: var(--color-primary);
   }
 
   .post-meta {
     font-size: var(--font-size-sm);
-    color: #9ca3af;
+    color: var(--color-text-muted);
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -222,7 +220,7 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   .tag {
-    background: #007acc;
+    background: var(--color-primary);
     color: white;
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
@@ -231,13 +229,13 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   .post-excerpt {
-    color: #d1d5db;
+    color: var(--color-text-secondary);
     line-height: var(--line-height-relaxed);
     margin-bottom: 1rem;
   }
 
   .read-more {
-    color: #007acc;
+    color: var(--color-primary);
     text-decoration: none;
     font-weight: var(--font-weight-medium);
   }

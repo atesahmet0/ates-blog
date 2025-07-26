@@ -87,7 +87,7 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     position: relative;
     height: 300px;
-    background-color: #2a2a2a;
+    background-color: var(--color-bg-tertiary);
   }
 
   .image-skeleton {
@@ -96,7 +96,7 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
+    background: linear-gradient(90deg, var(--color-bg-tertiary) 25%, #333 50%, var(--color-bg-tertiary) 75%);
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s infinite;
     opacity: 1;
@@ -137,7 +137,7 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
 
   /* Error state styling */
   .banner-container.error .image-skeleton {
-    background: linear-gradient(90deg, #3a1f1f 25%, #4a2222 50%, #3a1f1f 75%);
+    background: linear-gradient(90deg, var(--color-error-bg) 25%, var(--color-error-bg-alt) 50%, var(--color-error-bg) 75%);
     background-size: 200% 100%;
     animation: skeleton-loading 2s infinite;
   }
@@ -146,7 +146,7 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
   @media (prefers-reduced-motion: reduce) {
     .image-skeleton {
       animation: none;
-      background: #2a2a2a;
+      background: var(--color-bg-tertiary);
     }
     
     .banner-image {
@@ -157,14 +157,14 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
   .post-header {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #374151;
+    border-bottom: 1px solid var(--color-border-primary);
   }
 
   .post-header h1 {
     font-size: var(--font-size-4xl);
     font-weight: var(--font-weight-bold);
     margin-bottom: 1rem;
-    color: #e4e4e7;
+    color: var(--color-text-primary);
     line-height: var(--line-height-tight);
   }
 
@@ -176,7 +176,7 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
     gap: 1rem;
     margin-bottom: 1rem;
     font-size: var(--font-size-sm);
-    color: #9ca3af;
+    color: var(--color-text-muted);
   }
 
   .tags {
@@ -186,7 +186,7 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
   }
 
   .tag {
-    background: #007acc;
+    background: var(--color-primary);
     color: white;
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
@@ -197,7 +197,7 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
 
   .description {
     font-size: var(--font-size-lg);
-    color: #9ca3af;
+    color: var(--color-text-muted);
     font-style: italic;
     margin: 0;
     line-height: var(--line-height-relaxed);
@@ -212,15 +212,15 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
   .prose :global(h2) {
     margin-top: 2.5rem;
     margin-bottom: 1rem;
-    color: #e4e4e7;
-    border-bottom: 2px solid #374151;
+    color: var(--color-text-primary);
+    border-bottom: 2px solid var(--color-border-primary);
     padding-bottom: 0.5rem;
   }
 
   .prose :global(h3) {
     margin-top: 2rem;
     margin-bottom: 1rem;
-    color: #d1d5db;
+    color: var(--color-text-secondary);
   }
 
   .prose :global(p) {
@@ -237,12 +237,12 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
   }
 
   .prose :global(blockquote) {
-    background: #262626;
-    border-left: 4px solid #007acc;
+    background: var(--color-bg-secondary);
+    border-left: 4px solid var(--color-primary);
     margin: 2rem 0;
     padding: 1rem 1.5rem;
     font-style: italic;
-    color: #9ca3af;
+    color: var(--color-text-muted);
     border-radius: 4px;
   }
 
@@ -251,44 +251,44 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
     border-collapse: collapse;
     margin: 2rem 0;
     font-size: var(--font-size-sm);
-    background: #262626;
+    background: var(--color-bg-secondary);
     border-radius: 8px;
     overflow: hidden;
   }
 
   .prose :global(th), .prose :global(td) {
-    border: 1px solid #374151;
+    border: 1px solid var(--color-border-primary);
     padding: 0.75rem;
     text-align: left;
   }
 
   .prose :global(th) {
-    background: #374151;
+    background: var(--color-border-primary);
     font-weight: var(--font-weight-semibold);
-    color: #e4e4e7;
+    color: var(--color-text-primary);
   }
 
   .prose :global(td) {
-    color: #d1d5db;
+    color: var(--color-text-secondary);
   }
 
   .prose :global(code) {
     font-family: var(--font-mono);
-    background: #374151;
+    background: var(--color-code-bg);
     padding: 0.2rem 0.4rem;
     border-radius: 3px;
     font-size: var(--font-size-sm);
-    color: #fbbf24;
+    color: var(--color-code-text);
   }
 
   .prose :global(pre) {
     font-family: var(--font-mono);
-    background: #262626;
+    background: var(--color-code-block-bg);
     padding: 1.5rem;
     border-radius: 8px;
     overflow-x: auto;
     margin: 2rem 0;
-    border: 1px solid #374151;
+    border: 1px solid var(--color-border-primary);
   }
 
   .prose :global(pre code) {
@@ -306,14 +306,14 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
   .back-to-blog {
     display: inline-flex;
     align-items: center;
-    color: #007acc;
+    color: var(--color-primary);
     text-decoration: none;
     font-weight: var(--font-weight-medium);
     transition: color 0.2s ease;
   }
 
   .back-to-blog:hover {
-    color: #0066cc;
+    color: var(--color-primary-hover);
     text-decoration: underline;
   }
 
