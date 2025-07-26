@@ -16,7 +16,9 @@ A beautiful, fast, and modern static blog built with **Astro** and **MDX**. This
 ```text
 /
 ├── public/
-│   └── favicon.svg
+│   ├── favicon.svg
+│   └── images/
+│       └── banners/            # Blog post banner images
 ├── src/
 │   ├── components/
 │   │   └── Layout.astro        # Main layout component
@@ -67,6 +69,8 @@ title: "Your Post Title"
 date: "2025-01-15"
 description: "A brief description of your post"
 tags: ["tag1", "tag2", "tag3"]
+banner: "/images/banners/your-image.jpg"  # Optional banner image
+bannerAlt: "Alt text for the banner image"  # Required if banner is used
 ---
 
 import Layout from '../../components/Layout.astro';
