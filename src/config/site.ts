@@ -1,7 +1,7 @@
 // Site Configuration - Single Source of Truth
 export const siteConfig = {
   // Site Identity
-  title: "Be Fucking Bold",
+  title: "Be Fucking Boldf",
   description: "A beautiful static blog built with Astro and MDX",
   author: "Your Name",
   

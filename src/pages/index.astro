@@ -101,6 +101,7 @@ const sortedPosts = posts.sort((a, b) => {
     height: 200px;
     overflow: hidden;
     position: relative;
+    background-color: #2a2a2a;
   }
 
   .thumbnail-skeleton {
@@ -113,27 +114,14 @@ const sortedPosts = posts.sort((a, b) => {
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s infinite;
     opacity: 1;
-    transition: opacity 0.4s ease-out;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 2;
-  }
-
-  .thumbnail-skeleton::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    border: 2px solid #444;
-    border-top: 2px solid #007acc;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    opacity: 0.6;
+    will-change: opacity;
   }
 
   .post-thumbnail.loaded .thumbnail-skeleton {
     opacity: 0;
+    pointer-events: none;
   }
 
   .thumbnail-image {
@@ -141,9 +129,10 @@ const sortedPosts = posts.sort((a, b) => {
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out 0.1s, transform 0.3s ease;
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, transform 0.3s ease;
     position: relative;
     z-index: 1;
+    will-change: opacity, transform;
   }
 
   .post-thumbnail.loaded .thumbnail-image {
@@ -163,9 +152,23 @@ const sortedPosts = posts.sort((a, b) => {
     }
   }
 
-  @keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  /* Error state styling */
+  .post-thumbnail.error .thumbnail-skeleton {
+    background: linear-gradient(90deg, #3a1f1f 25%, #4a2222 50%, #3a1f1f 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 2s infinite;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .thumbnail-skeleton {
+      animation: none;
+      background: #2a2a2a;
+    }
+    
+    .thumbnail-image {
+      transition: opacity 0.3s ease;
+    }
   }
 
   .post-card:hover .thumbnail-image {
