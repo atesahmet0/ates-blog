@@ -21,16 +21,18 @@ const sortedPosts = posts.sort((a, b) => {
     <div class="posts-grid">
       {sortedPosts.map((post) => (
         <article class="post-card">
-          <div class="post-thumbnail">
-            <div class="thumbnail-skeleton"></div>
-            <img 
-              src={post.data.banner || siteConfig.blog.defaultBanner} 
-              alt={post.data.bannerAlt || `Default banner for ${post.data.title}`}
-              class="thumbnail-image"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+          <a href={`/blog/${post.slug}`} class="post-thumbnail-link">
+            <div class="post-thumbnail">
+              <div class="thumbnail-skeleton"></div>
+              <img 
+                src={post.data.banner || siteConfig.blog.defaultBanner} 
+                alt={post.data.bannerAlt || `Default banner for ${post.data.title}`}
+                class="thumbnail-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
           <div class="post-content">
             <h2>
               <a href={`/blog/${post.slug}`}>{post.data.title}</a>
@@ -94,6 +96,12 @@ const sortedPosts = posts.sort((a, b) => {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     border: 1px solid #374151;
     overflow: hidden;
+  }
+
+  .post-thumbnail-link {
+    display: block;
+    text-decoration: none;
+    width: 100%;
   }
 
   .post-thumbnail {
