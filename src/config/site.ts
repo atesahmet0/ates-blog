@@ -45,8 +45,8 @@ export const siteConfig = {
   // Theme Colors - Single Source of Truth
   colors: {
     // Primary brand colors
-    primary: "#007acc",
-    primaryHover: "#0066cc",
+    primary: "#ff6b35",
+    primaryHover: "#e55a2b",
     
     // Background colors
     background: {
@@ -65,7 +65,7 @@ export const siteConfig = {
     // Border colors
     border: {
       primary: "#374151",     // Main borders
-      accent: "#007acc",      // Accent borders (left border on cards)
+      accent: "#ff6b35",      // Accent borders (left border on cards)
     },
     
     // Interactive states
