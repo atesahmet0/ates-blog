@@ -37,6 +37,7 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
           loading="eager"
           decoding="async"
           fetchpriority="high"
+          onload="this.classList.add('loaded')"
         />
       </div>
       
@@ -91,12 +92,15 @@ const displayBannerAlt = bannerAlt || `Default banner for ${title}`;
     height: 300px;
     object-fit: cover;
     display: block;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
   }
 
-  .banner-image[src] {
+  .banner-image.loaded {
+    opacity: 1;
     animation: none;
     background: none;
   }

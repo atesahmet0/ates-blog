@@ -28,6 +28,7 @@ const sortedPosts = posts.sort((a, b) => {
               class="thumbnail-image"
               loading="lazy"
               decoding="async"
+              onload="this.classList.add('loaded')"
             />
           </div>
           <div class="post-content">
@@ -105,15 +106,21 @@ const sortedPosts = posts.sort((a, b) => {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
     background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
   }
 
-  .thumbnail-image[src] {
+  .thumbnail-image.loaded {
+    opacity: 1;
     animation: none;
     background: none;
+  }
+
+  .post-card:hover .thumbnail-image.loaded {
+    transform: scale(1.05);
   }
 
   @keyframes loading {
@@ -133,7 +140,7 @@ const sortedPosts = posts.sort((a, b) => {
     padding: 1.5rem;
   }
 
-  .post-card:hover {
+  .post-card:hover .thumbnail-image {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }

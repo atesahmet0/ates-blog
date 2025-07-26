@@ -15,8 +15,9 @@ This project implements several strategies to make images load faster and improv
 - Proper `loading` attributes for performance
 
 ### 3. **Visual Loading Experience**
+- **Full image loading** - Images appear completely when ready (no progressive loading)
 - **Skeleton loading animations** while images load
-- **Smooth transitions** when images appear
+- **Smooth fade-in transitions** when images appear
 - **Background placeholders** prevent layout shift
 
 ### 4. **Astro Image Optimization**
@@ -37,33 +38,40 @@ This project implements several strategies to make images load faster and improv
 
 ### Optimized Image Loading
 ```astro
-<!-- Blog post banners (above-the-fold) -->
+<!-- Blog post banners (full loading) -->
 <img 
   src={displayBanner} 
   alt={displayBannerAlt} 
+  class="banner-image"
   loading="eager"
   decoding="async"
   fetchpriority="high"
+  onload="this.classList.add('loaded')"
 />
 
 <!-- Blog listing thumbnails (lazy loaded) -->
 <img 
   src={thumbnailSrc} 
   alt={alt}
+  class="thumbnail-image"
   loading="lazy"
   decoding="async"
+  onload="this.classList.add('loaded')"
 />
 ```
 
-### Skeleton Loading CSS
+### Full Image Loading CSS
 ```css
 .image {
+  opacity: 0;
+  transition: opacity 0.3s ease;
   background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
 }
 
-.image[src] {
+.image.loaded {
+  opacity: 1;
   animation: none;
   background: none;
 }
@@ -117,7 +125,12 @@ This project implements several strategies to make images load faster and improv
 export default defineConfig({
   image: {
     service: {
-      entrypoint: 'astro/assets/services/sharp'
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        progressive: false,  // Disable progressive loading
+        quality: 85,         // High quality
+        mozjpeg: true,      // Better compression
+      }
     }
   }
 });

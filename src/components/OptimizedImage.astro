@@ -22,57 +22,74 @@ const {
   priority = false
 } = Astro.props;
 
-// Generate multiple image sizes for responsive loading
-const imageSizes = width ? [
-  { width: Math.round(width * 0.5), suffix: 'sm' },
-  { width: Math.round(width * 0.75), suffix: 'md' },
-  { width: width, suffix: 'lg' }
-] : [];
-
-// Create srcset for responsive images
-const createSrcSet = (baseSrc: string) => {
-  if (!baseSrc.startsWith('/') || baseSrc.includes('?')) {
-    return ''; // External URLs or already processed
-  }
-  
-  const [path, ext] = baseSrc.split(/\.([^.]+)$/);
-  return imageSizes
-    .map(size => `${path}-${size.suffix}.${ext} ${size.width}w`)
-    .join(', ');
-};
-
-const srcset = createSrcSet(src);
+// Generate unique ID for this image instance
+const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
-<img
-  src={src}
-  alt={alt}
-  width={width}
-  height={height}
-  loading={priority ? 'eager' : loading}
-  decoding="async"
-  fetchpriority={priority ? 'high' : 'auto'}
-  class={className}
-  sizes={sizes}
-  srcset={srcset || undefined}
-/>
+<div class="image-wrapper">
+  <img
+    id={imageId}
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={priority ? 'eager' : loading}
+    decoding="async"
+    fetchpriority={priority ? 'high' : 'auto'}
+    class={className}
+    sizes={sizes}
+  />
+</div>
+
+<script define:vars={{ imageId }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    const img = document.getElementById(imageId);
+    if (img) {
+      if (img.complete && img.naturalHeight !== 0) {
+        // Image already loaded
+        img.classList.add('loaded');
+      } else {
+        // Wait for image to load
+        img.addEventListener('load', function() {
+          this.classList.add('loaded');
+        });
+        
+        // Handle error case
+        img.addEventListener('error', function() {
+          this.classList.add('error');
+        });
+      }
+    }
+  });
+</script>
 
 <style>
+  .image-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  
   img {
-    /* Smooth loading transition */
+    /* Hidden by default until fully loaded */
     opacity: 0;
     transition: opacity 0.3s ease;
-  }
-  
-  img[src] {
-    opacity: 1;
-  }
-  
-  /* Skeleton loading effect */
-  img:not([src]) {
+    
+    /* Skeleton loading background */
     background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s infinite;
+  }
+  
+  img.loaded {
+    opacity: 1;
+    animation: none;
+    background: none;
+  }
+  
+  img.error {
+    opacity: 0.5;
+    animation: none;
+    background: #444;
   }
   
   @keyframes skeleton-loading {

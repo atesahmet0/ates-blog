@@ -28,6 +28,9 @@ const pageDescription = description || siteConfig.description;
     {/* Preload default banner for faster loading */}
     <link rel="preload" as="image" href={siteConfig.blog.defaultBanner} />
     
+    {/* Image loading handler */}
+    <script is:inline src="/js/image-loader.js"></script>
+    
     <title>{pageTitle}</title>
   </head>
   <body>
