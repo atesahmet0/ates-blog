@@ -19,19 +19,11 @@ const sortedPosts = posts.sort((a, b) => {
     
     <div class="posts-grid">
       {sortedPosts.map((post) => (
-        <article class="post-card">
-          <a href={`/blog/${post.slug}`} class="post-thumbnail-link">
-            <div class="post-thumbnail">
-              <div class="thumbnail-skeleton"></div>
-              <img 
-                src={post.data.banner || siteConfig.blog.defaultBanner} 
-                alt={post.data.bannerAlt || `Default banner for ${post.data.title}`}
-                class="thumbnail-image"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </a>
+        <article 
+          class="post-card"
+          style={`background-image: url(${post.data.banner || siteConfig.blog.defaultBanner})`}
+        >
+          <div class="card-overlay"></div>
           <div class="post-content">
             <h2>
               <a href={`/blog/${post.slug}`}>{post.data.title}</a>
@@ -89,102 +81,48 @@ const sortedPosts = posts.sort((a, b) => {
 
   .post-card {
     background: var(--color-bg-secondary);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 16px;
     padding: 0;
-    border-left: 4px solid var(--color-border-accent);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid var(--color-border-primary);
     overflow: hidden;
+    aspect-ratio: 16/9;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     clip-path: inset(0 round 16px);
   }
 
-  .post-thumbnail-link {
-    display: block;
-    text-decoration: none;
-    width: 100%;
+  .post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   }
 
-  .post-thumbnail {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    position: relative;
-    background-color: var(--color-bg-tertiary);
-    border-radius: 16px 16px 0 0;
-  }
-
-  .thumbnail-skeleton {
+  .card-overlay {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;  bottom: 0;
-    background: linear-gradient(90deg, var(--color-bg-tertiary) 25%, #333 50%, var(--color-bg-tertiary) 75%);
-    background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
-    opacity: 1;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
-    will-change: opacity;
-  }
-
-  .post-thumbnail.loaded .thumbnail-skeleton {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .thumbnail-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, transform 0.3s ease;
-    position: relative;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.1) 30%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
     z-index: 1;
-    will-change: opacity, transform;
-  }
-
-  .post-thumbnail.loaded .thumbnail-image {
-    opacity: 1;
-  }
-
-  .post-card:hover .post-thumbnail.loaded .thumbnail-image {
-    transform: scale(1.05);
-  }
-
-  @keyframes skeleton-loading {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
-  }
-
-  /* Error state styling */
-  .post-thumbnail.error .thumbnail-skeleton {
-    background: linear-gradient(90deg, #3a1f1f 25%, #4a2222 50%, #3a1f1f 75%);
-    background-size: 200% 100%;
-    animation: skeleton-loading 2s infinite;
-  }
-
-  /* Reduce motion for users who prefer it */
-  @media (prefers-reduced-motion: reduce) {
-    .thumbnail-skeleton {
-      animation: none;
-      background: var(--color-bg-tertiary);
-    }
-    
-    .thumbnail-image {
-      transition: opacity 0.3s ease;
-    }
-  }
-
-  .post-card:hover .thumbnail-image {
-    transform: scale(1.05);
   }
 
   .post-content {
     padding: 1.5rem;
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    margin-top: auto;
   }
 
   .post-card:hover .thumbnail-image {
