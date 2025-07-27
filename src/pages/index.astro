@@ -121,13 +121,50 @@ const sortedPosts = posts.sort((a, b) => {
     position: relative;
     z-index: 2;
     background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px) saturate(1.2);
-    border-radius: 20px 20px 20px 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     margin: 0.75rem;
     margin-top: auto;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    clip-path: inset(0 round 20px);
-    aspect-ratio: 32/9;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 0 4px 2px rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+  }
+
+  .post-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.8),
+      transparent
+    );
+    z-index: 1;
+  }
+
+  .post-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.8),
+      transparent,
+      rgba(255, 255, 255, 0.3)
+    );
+    z-index: 1;
   }
 
   .post-card:hover .thumbnail-image {
@@ -139,6 +176,8 @@ const sortedPosts = posts.sort((a, b) => {
     margin: 0 0 0.5rem 0;
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-semibold);
+    position: relative;
+    z-index: 2;
   }
 
   .post-card h2 a {
@@ -159,6 +198,8 @@ const sortedPosts = posts.sort((a, b) => {
     display: flex;
     align-items: center;
     gap: 1rem;
+    position: relative;
+    z-index: 2;
   }
 
   .tags {
@@ -190,14 +231,18 @@ const sortedPosts = posts.sort((a, b) => {
     color: rgba(255, 255, 255, 0.9);
     line-height: var(--line-height-relaxed);
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
   }
 
   .read-more {
-    color: white;
+    color: var(--color-primary);
     text-decoration: none;
     font-weight: var(--font-weight-medium);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease;
+    position: relative;
+    z-index: 2;
   }
 
   .read-more:hover {
