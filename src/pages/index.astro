@@ -120,9 +120,14 @@ const sortedPosts = posts.sort((a, b) => {
     padding: 1.5rem;
     position: relative;
     z-index: 2;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px) saturate(1.2);
+    border-radius: 20px 20px 20px 20px;
+    margin: 0.75rem;
     margin-top: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    clip-path: inset(0 round 20px);
+    aspect-ratio: 32/9;
   }
 
   .post-card:hover .thumbnail-image {
@@ -137,17 +142,19 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   .post-card h2 a {
-    color: var(--color-text-primary);
+    color: white;
     text-decoration: none;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   .post-card h2 a:hover {
     color: var(--color-primary);
+    text-shadow: 0 2px 8px rgba(0, 122, 204, 0.5);
   }
 
   .post-meta {
     font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.8);
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -180,18 +187,21 @@ const sortedPosts = posts.sort((a, b) => {
   }
 
   .post-excerpt {
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.9);
     line-height: var(--line-height-relaxed);
     margin-bottom: 1rem;
   }
 
   .read-more {
-    color: var(--color-primary);
+    color: white;
     text-decoration: none;
     font-weight: var(--font-weight-medium);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
   }
 
   .read-more:hover {
-    text-decoration: underline;
+    color: var(--color-primary);
+    text-shadow: 0 2px 8px rgba(0, 122, 204, 0.5);
   }
 </style>
