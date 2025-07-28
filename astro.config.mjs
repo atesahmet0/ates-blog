@@ -2,9 +2,12 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx()],
+  site: 'https://befuckingbold.com',
+  integrations: [mdx(), sitemap()],
   image: {
     // Enable image optimization with non-progressive settings
     service: {

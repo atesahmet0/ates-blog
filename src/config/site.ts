@@ -1,7 +1,7 @@
 // Site Configuration - Single Source of Truth
 export const siteConfig = {
   // Site Identity
-  title: "Be Fucking Bold",
+  title: "Ateşin Blogu",
   description: "Burası bana ait",
   author: "Ahmet Rıza Ateş",
   
