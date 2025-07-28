@@ -74,6 +74,7 @@ jobs:
           **/node_modules/**
           **/.DS_Store
           **/.env*
+        dangerous-clean-slate: true
         state-name: .ftp-deploy-sync-state.json
         dry-run: false
         log-level: verbose
